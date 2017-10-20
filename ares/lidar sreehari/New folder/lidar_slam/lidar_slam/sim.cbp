@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="sim" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/slam" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Debug" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-march=core2" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/test_opencv" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="IniFile.cpp" />
+		<Unit filename="IniFile.h" />
+		<Unit filename="coreslam/BreezySLAM.hpp" />
+		<Unit filename="coreslam/Laser.hpp" />
+		<Unit filename="coreslam/Map.cpp" />
+		<Unit filename="coreslam/Map.hpp" />
+		<Unit filename="coreslam/Position.hpp" />
+		<Unit filename="coreslam/Scan.cpp" />
+		<Unit filename="coreslam/Scan.hpp" />
+		<Unit filename="coreslam/Velocities.hpp" />
+		<Unit filename="coreslam/WheeledRobot.cpp" />
+		<Unit filename="coreslam/WheeledRobot.hpp" />
+		<Unit filename="coreslam/algorithms.cpp" />
+		<Unit filename="coreslam/algorithms.hpp" />
+		<Unit filename="coreslam/coreslam.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="coreslam/coreslam.h" />
+		<Unit filename="coreslam/coreslam_i686.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="coreslam/coreslam_internals.h" />
+		<Unit filename="coreslam/random.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="coreslam/random.h" />
+		<Unit filename="coreslam/ziggurat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="coreslam/ziggurat.h" />
+		<Unit filename="hectorslam/HectorDebugInfoProvider.h" />
+		<Unit filename="hectorslam/HectorDrawings.h" />
+		<Unit filename="hectorslam/HectorSlam.cpp" />
+		<Unit filename="hectorslam/HectorSlam.h" />
+		<Unit filename="hectorslam/map/GridMap.h" />
+		<Unit filename="hectorslam/map/GridMapBase.h" />
+		<Unit filename="hectorslam/map/GridMapCacheArray.h" />
+		<Unit filename="hectorslam/map/GridMapLogOdds.h" />
+		<Unit filename="hectorslam/map/GridMapReflectanceCount.h" />
+		<Unit filename="hectorslam/map/GridMapSimpleCount.h" />
+		<Unit filename="hectorslam/map/MapDimensionProperties.h" />
+		<Unit filename="hectorslam/map/OccGridMapBase.h" />
+		<Unit filename="hectorslam/map/OccGridMapUtil.h" />
+		<Unit filename="hectorslam/map/OccGridMapUtilConfig.h" />
+		<Unit filename="hectorslam/matcher/ScanMatcher.h" />
+		<Unit filename="hectorslam/scan/DataPointContainer.h" />
+		<Unit filename="hectorslam/slam_main/HectorSlamProcessor.h" />
+		<Unit filename="hectorslam/slam_main/MapProcContainer.h" />
+		<Unit filename="hectorslam/slam_main/MapRepMultiMap.h" />
+		<Unit filename="hectorslam/slam_main/MapRepSingleMap.h" />
+		<Unit filename="hectorslam/slam_main/MapRepresentationInterface.h" />
+		<Unit filename="hectorslam/util/DrawInterface.h" />
+		<Unit filename="hectorslam/util/HectorDebugInfoInterface.h" />
+		<Unit filename="hectorslam/util/MapLockerInterface.h" />
+		<Unit filename="hectorslam/util/UtilFunctions.h" />
+		<Unit filename="lidar.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="plot.cpp" />
+		<Unit filename="plot.h" />
+		<Unit filename="rplidar/abs_rxtx.h" />
+		<Unit filename="rplidar/arch_win32.h" />
+		<Unit filename="rplidar/event.h" />
+		<Unit filename="rplidar/locker.h" />
+		<Unit filename="rplidar/net_serial.cpp" />
+		<Unit filename="rplidar/net_serial.h" />
+		<Unit filename="rplidar/rplidar.h" />
+		<Unit filename="rplidar/rplidar_cmd.h" />
+		<Unit filename="rplidar/rplidar_driver.cpp" />
+		<Unit filename="rplidar/rplidar_driver.h" />
+		<Unit filename="rplidar/rplidar_driver_serial.h" />
+		<Unit filename="rplidar/rplidar_protocol.h" />
+		<Unit filename="rplidar/rptypes.h" />
+		<Unit filename="rplidar/sdkcommon.h" />
+		<Unit filename="rplidar/thread.cpp" />
+		<Unit filename="rplidar/thread.h" />
+		<Unit filename="rplidar/timer.cpp" />
+		<Unit filename="rplidar/timer.h" />
+		<Unit filename="rplidar/util.h" />
+		<Unit filename="rplidar/winthread.hpp" />
+		<Unit filename="serial.cpp" />
+		<Unit filename="serial.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

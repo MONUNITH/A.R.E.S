@@ -1,0 +1,18 @@
+rosmake gmapping
+roscore
+	ctr+alt+t
+rosparam set use_sim_time true
+rosrun gmapping slam_gmapping scan:=base_scan
+	ctr+alt+t
+rosbag play --clock basic_localization_stage.bag
+//rosbag play basic_localization_stage.bag
+rosrun map_server map_saver -f map
+
+
+
+links
+http://wiki.ros.org/slam_gmapping/Tutorials/MappingFromLoggedData#record
+https://github.com/lncd/Robots-OD/wiki/How-to-create-a-map-using-SLAM-gmapping
+http://www.pirobot.org/blog/0014/
+https://www.safaribooksonline.com/library/view/mastering-ros-for/9781783551798/
+https://opensource.googleblog.com/2016/10/introducing-cartographer.html
