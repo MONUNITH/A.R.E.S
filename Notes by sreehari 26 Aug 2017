@@ -1,0 +1,7 @@
+Create new TF so that it is dynamic 
+It takes the values of vertical servo
+This TF will transform the angle of the robot/sensor/head
+
+Test interactive tf maker from tf2 repo.
+
+Then the 2d should work as a make shift 3d slam.
