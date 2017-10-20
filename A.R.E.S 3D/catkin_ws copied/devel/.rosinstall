@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/monu/catkin_ws/devel/setup.sh
