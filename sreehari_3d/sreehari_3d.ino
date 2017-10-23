@@ -7,11 +7,12 @@ int reading;
 int prev_v_angle = 0;
 int v_angle = 0;
 int prev_h_angle = 0;
-int h_angle = 0;
+float h_angle = 0;
 
-bool clockwise = false;
+bool clockwise = true;
 bool ROS = false;
-int i, new_data;
+bool new_data = false;
+int i;
 
 int minPosX = 0;
 int maxPosX = 360;
@@ -20,58 +21,76 @@ int maxPosY = 180;
 int radius, posX, posY;
 float pi = 3.14159265;
 float deg2rad = pi / 180.0;
+float degperstep = 0.77419354838;
+int servomax = 100;
+int servomin = 5;
+int stepperSpeed = 60;
 
-#define motorSteps 200 // change this to number of steps per revolution
+#define motorSteps 465 // change this to number of steps per revolution
 #define motorPin1 8
 #define motorPin2 9
+#define motorPin3 10
+#define motorPin4 11
 
-Stepper mystepper(motorSteps, motorPin1, motorPin2);
+Stepper mystepper(motorSteps, motorPin1, motorPin2, motorPin3, motorPin4);
 Servo myservo;
 LIDARLite myLidarLite;
 
+/*
+ * Testing the motors
+ */ 
 void test_motors()
 {
-  for (i = 0; i <= 180; i++)
+  /*
+  for (i = 0; i <= 465; i++)
+  {
+    mystepper.step(-1);
+//    delay(10);
+  }
+  
+  mystepper.step(-1*motorSteps);    //is this the right way to make 360 rotation
+  */
+  for (i = servomin; i <= servomax; i++)
   {
     myservo.write(i);
+    delay(10);
   }
-  for (i; i >= 0; i--)
+  for (i; i >= servomin; i--)
   {
     myservo.write(i);
+    delay(10);
   }
-  myservo.write(0);
-
-  for (i = 0; i <= 360; i++)
-    mystepper.step(1);
-
-  mystepper.step(360);    //is this the right way to make 360 rotation
-
-
+  myservo.write(servomin);
+  delay(10);
 }
 
+/*
+ * Increase horizontal angle
+ * If that is 360 increase vertical angle by 1
+ */
 void motors_move()
 {
-  mystepper.step(1);
-  h_angle++;
+  mystepper.step(-1);
+  h_angle+=degperstep;
   if (h_angle >= 360)
   {
-    h_angle = h_angle % 360;
-    if (clockwise == false)
+    h_angle = h_angle - 360.0;
+    if (clockwise == true)
     {
       v_angle++;
-      if (v_angle >= 180)
+      if (v_angle >= servomax)
       {
-        v_angle = 180;
-        clockwise = 1;
+        v_angle = servomax;
+        clockwise = false;
       }
     }
     else
     {
       v_angle--;
-      if (v_angle <= 0)
+      if (v_angle <= servomin)
       {
-        v_angle = 0;
-        clockwise = 0;
+        v_angle = servomin;
+        clockwise = true;
       }
     }
   }
@@ -81,8 +100,8 @@ void motors_move()
 void setup()
 {
 
-  mystepper.setSpeed(60);         //Speed of stepper-needs optimizing
-  myservo.attach(9);
+  mystepper.setSpeed(stepperSpeed);         //Speed of stepper-needs optimizing
+  myservo.attach(5);
 
   myLidarLite.begin(1, true);
   myLidarLite.beginContinuous();
@@ -98,20 +117,23 @@ void loop()
 
   reading = myLidarLite.distanceContinuous();
   
+//  Serial.print("                                           ");
+//  Serial.println(reading);
+  
   if (prev_h_angle != h_angle)
   {
     prev_h_angle = h_angle;
-    new_data = 1;
+    new_data = true;
   }
   else if (prev_v_angle != v_angle)
   {
     prev_h_angle = h_angle;
-    new_data = 1;
+    new_data = true;
   }
 
-  if (new_data == 1)
+  if (new_data == true)
   {
-    new_data = 0;
+    new_data = false;
     if (ROS == false)
     {
       radius = reading;
@@ -119,11 +141,12 @@ void loop()
       posY = v_angle;
 
       float azimuth = posX * deg2rad;
-      float elevation = (180 - maxPosY + posY) * deg2rad;
+//      float elevation = (180 - maxPosY + posY) * deg2rad;
+      float elevation = (posY) * deg2rad;
       double x = radius * sin(elevation) * cos(azimuth);
       double y = radius * sin(elevation) * sin(azimuth);
       double z = radius * cos(elevation);
-      Serial.println(String(-x, 5) + " " + String(y, 5) + " " + String(-z, 5));
+      Serial.println(String(-x, 5) + " " + String(y, 5) + " " + String(z, 5));
     }
     else
     {
@@ -132,6 +155,13 @@ void loop()
   }
   motors_move();
 }
+
+/*
+void loop()
+{
+
+}
+*/
 
 void serialPrintRange(int v_angle, int h_angle, int dist)
 {
@@ -145,9 +175,12 @@ void serialPrintRange(int v_angle, int h_angle, int dist)
   }
 }
 
+
 /*
   TODO
 
+  Stepper Motor Vibrations... WHY??
+  STart condition  for motor
   Set the no of steps per revolution
   Find the optimum speed
   Change the method to do parallel move and measure
@@ -155,3 +188,5 @@ void serialPrintRange(int v_angle, int h_angle, int dist)
   Use xbee.h
 
 */
+
+
