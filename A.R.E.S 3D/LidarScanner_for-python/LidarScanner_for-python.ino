@@ -64,7 +64,7 @@ void test_motors()
     delay(10);
   }
   myservo.write(servomax);
-  v_angle_start = servomax;
+  v_angle = v_angle_start;
   delay(10);
 }
 
@@ -114,7 +114,7 @@ void setup()
 
   test_motors();
 
-  v_angle = v_angle_start;
+  v_angle_start = servomax;
 
 }
 

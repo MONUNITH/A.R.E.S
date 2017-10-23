@@ -64,7 +64,7 @@ void test_motors()
     delay(10);
   }
   myservo.write(servomax);
-  v_angle_start = servomax;
+  v_angle = v_angle_start ;
   delay(10);
 }
 
@@ -114,7 +114,7 @@ void setup()
 
   test_motors();
 
-  v_angle = v_angle_start;
+  v_angle_start = servomax;
 
 }
 
@@ -152,9 +152,7 @@ void loop()
       double x = radius * sin(elevation) * cos(azimuth);
       double y = radius * sin(elevation) * sin(azimuth);
       double z = radius * cos(elevation);
-      Serial.print('\n');
-      Serial.print(" "+String(x, 5) + " " + String(y, 5) + " " + String(z, 5)+" ");
-      Serial.print('\n');
+      Serial.print(String(-x, 5) + " " + String(y, 5) + " " + String(z, 5));
     }
     else
     {
