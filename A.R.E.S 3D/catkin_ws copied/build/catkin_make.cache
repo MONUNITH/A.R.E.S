@@ -1,2 +1,0 @@
-hector_mapping:hector_slam_launch:lidar_scanner_driver:rplidar_ros-slam
--DCATKIN_DEVEL_PREFIX=/home/monu/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/monu/catkin_ws/install -G Unix Makefiles

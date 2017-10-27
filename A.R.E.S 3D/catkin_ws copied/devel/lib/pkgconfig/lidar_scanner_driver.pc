@@ -1,8 +1,0 @@
-prefix=/home/monu/catkin_ws/devel
-
-Name: lidar_scanner_driver
-Description: Description of lidar_scanner_driver
-Version: 0.0.1
-Cflags: -I/home/monu/catkin_ws/src/lidar_scanner_driver/include
-Libs: -L/home/monu/catkin_ws/devel/lib 
-Requires: 
